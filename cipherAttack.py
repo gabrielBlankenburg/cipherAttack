@@ -1,6 +1,6 @@
 import collections
 
-# Returns a dictionary with the frequences of each character of the crypted text
+# Returns a dictionary with the frequencies of each character of the crypted text
 def getFrequency(cryptedText):
     return collections.Counter(cryptedText)
 
@@ -17,7 +17,7 @@ def getCryptedText(filePath):
 def replaceStr(string, toReplace, replace):
     return string.replace(toReplace, replace)
 
-# Finds out a given sequence (use @ to replace ANY char)
+# Finds out a given sequence (use @ to replace ANY char). Notice that if you already know the ENTIRE key use decrypt
 def findSequence(cryptedText, sequence):
     # Saves the characters that matches
     dic = {}
@@ -48,7 +48,20 @@ def findSequence(cryptedText, sequence):
                     aux = ""
     return dic
 
-print "#To open a file that contains the crypted text, use getCryptedText(filepath)"
-print "#To see the frequency of words, use the getFrequency(cryptedText), where cryptedText is the string to find the frequency"
-print "#To find a sequence, use findSequence(string, cryptedText), where string is the pattern you want to find out and cryptedText the own crypted text (in this case @ means any char)"
-print "#To replace a string, use replaceStr(string, toReplace, replace), string is the string that you want to change, to replace is the characters that you want to replace and replace is the replacement"
+# It decrypts all the text, to use it be sure that the dictionary key have the ENTIRE key, if you want to replace some characters use replaceStr instead
+def decrypt(cryptedText, dictionaryKey):
+    for i in cryptedText:
+        i = dictionaryKey[i]
+    return cryptedText
+    
+print
+print "Some Hints: "
+print
+print "First finds out the frequency of each character using getFrequency"
+print 
+print "Then try to find out some usual words in the language. e.g. in english 'the' is often used"
+print
+print "If you want to visualize better the text use replaceStr. I DO RECOMENDO to do it in an aux variable, so it won't affect the text that you are dealing with"
+print 
+print "If you want to know more about each method, check out this on github: https://github.com/gabrielBlankenburg/cipherAttack"
+print
